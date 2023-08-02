@@ -1,0 +1,40 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="nodot-multiplayer-fps"
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.1", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+SaveManager="*res://addons/nodot/autoload/SaveManager.gd"
+GlobalSignal="*res://addons/nodot/autoload/GlobalSignal.gd"
+PlayerManager="*res://addons/nodot/autoload/PlayerManager.gd"
+CollectableManager="*res://addons/nodot/autoload/CollectableManager.gd"
+InputManager="*res://addons/nodot/autoload/InputManager.gd"
+VideoManager="*res://addons/nodot/autoload/VideoManager.gd"
+AudioManager="*res://addons/nodot/autoload/AudioManager.gd"
+NetworkManager="*res://addons/nodot/autoload/NetworkManager.gd"
+MultiplayerManager="*res://autoload/MultiplayerManager.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/nodot/plugin.cfg", "res://addons/tbloader/plugin.cfg")
+
+[input]
+
+escape={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}

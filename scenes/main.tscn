@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://dt6tfm8fbbcjp"]
+
+[ext_resource type="Script" path="res://addons/nodot/menus/MenuManager.gd" id="1_h2yd6"]
+[ext_resource type="PackedScene" uid="uid://kwbgl8vks38r" path="res://addons/nodot/scenes/menus/main_menu.tscn" id="2_hfta3"]
+[ext_resource type="PackedScene" uid="uid://bigmdsd7jk3kv" path="res://addons/nodot/scenes/menus/multiplayer_menu.tscn" id="3_yem2t"]
+[ext_resource type="PackedScene" uid="uid://dj1v33w5ffysa" path="res://addons/nodot/scenes/menus/options_menu.tscn" id="4_ycer1"]
+[ext_resource type="PackedScene" uid="uid://clvaldaec2uum" path="res://addons/nodot/scenes/menus/pause_menu.tscn" id="5_l83fk"]
+[ext_resource type="Script" path="res://addons/nodot/utility/UniqueSet.gd" id="6_hiw5u"]
+
+[sub_resource type="GDScript" id="GDScript_4srww"]
+resource_name = "main"
+script/source = "extends Node3D
+
+func _enter_tree():
+	NetworkManager.enabled = true
+
+func _ready():
+	MultiplayerManager.spawn_root = $World
+	MultiplayerManager.spawn_points = $SpawnPoints
+"
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_k5ixu"]
+properties/0/path = NodePath(".:current_index")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+
+[node name="Main" type="Node3D"]
+script = SubResource("GDScript_4srww")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+
+[node name="MenuManager" type="Node2D" parent="CanvasGroup"]
+script = ExtResource("1_h2yd6")
+active_menu = "MainMenuContainer"
+
+[node name="MainMenuContainer" parent="CanvasGroup/MenuManager" instance=ExtResource("2_hfta3")]
+visible = true
+first_scene_path = "res://scenes/maps/map.tscn"
+
+[node name="MultiplayerMenuContainer" parent="CanvasGroup/MenuManager" instance=ExtResource("3_yem2t")]
+
+[node name="OptionsMenuContainer" parent="CanvasGroup/MenuManager" instance=ExtResource("4_ycer1")]
+visible = false
+
+[node name="PauseMenuContainer" parent="CanvasGroup/MenuManager" instance=ExtResource("5_l83fk")]
+visible = false
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="World"]
+_spawnable_scenes = PackedStringArray("res://scenes/player/player.tscn", "res://scenes/maps/map.tscn")
+spawn_path = NodePath("..")
+
+[node name="SpawnPoints" type="Node" parent="."]
+script = ExtResource("6_hiw5u")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="SpawnPoints"]
+replication_config = SubResource("SceneReplicationConfig_k5ixu")

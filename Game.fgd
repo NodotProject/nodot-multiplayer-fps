@@ -1,0 +1,3 @@
+@PointClass size(-4 -4 -4, 4 4 4) color(0 255 0) = player_spawn : "Player" [
+]
+

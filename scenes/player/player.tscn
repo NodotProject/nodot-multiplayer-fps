@@ -1,0 +1,183 @@
+[gd_scene load_steps=27 format=3 uid="uid://clkxlummcimu8"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_ccicf"]
+[ext_resource type="Script" path="res://addons/nodot/characters/FirstPerson/FirstPersonViewport.gd" id="2_bgjik"]
+[ext_resource type="Script" path="res://addons/nodot/characters/FirstPerson/FirstPersonItem.gd" id="4_17wvg"]
+[ext_resource type="Script" path="res://addons/nodot/characters/Locomotion3D/CharacterMover3D.gd" id="4_frkw4"]
+[ext_resource type="Script" path="res://addons/nodot/characters/Locomotion3D/CharacterJump3D.gd" id="5_1qjba"]
+[ext_resource type="Script" path="res://addons/nodot/weapons/Magazine.gd" id="5_a55jl"]
+[ext_resource type="Script" path="res://addons/nodot/characters/FirstPerson/FirstPersonIronSight.gd" id="5_p0wp8"]
+[ext_resource type="Script" path="res://addons/nodot/characters/FirstPerson/FirstPersonMouseInput.gd" id="6_eioud"]
+[ext_resource type="Script" path="res://addons/nodot/weapons/HitScan3D.gd" id="6_n16ca"]
+[ext_resource type="Script" path="res://addons/nodot/characters/Locomotion3D/CharacterFly3D.gd" id="6_ux5dw"]
+[ext_resource type="Script" path="res://addons/nodot/weapons/BulletHole.gd" id="7_mppwb"]
+[ext_resource type="Texture2D" uid="uid://dp3q4rmvdwfwh" path="res://addons/nodot/textures/spark.png" id="8_yoicw"]
+[ext_resource type="Script" path="res://addons/nodot/sound/SFXPlayer3D.gd" id="9_nvo8j"]
+[ext_resource type="AudioStream" uid="uid://droajtp2m0f6v" path="res://sfx/weapons/dryfire.mp3" id="10_1kkvn"]
+[ext_resource type="AudioStream" uid="uid://dpug4qigsxmg2" path="res://sfx/weapons/fire.mp3" id="11_kg82p"]
+[ext_resource type="AudioStream" uid="uid://dvtlml05r74h5" path="res://sfx/weapons/reload.mp3" id="12_dl40a"]
+[ext_resource type="Script" path="res://addons/nodot/hud/CrossHair.gd" id="15_33qns"]
+[ext_resource type="Texture2D" uid="uid://d2qk8lq4t6vry" path="res://addons/nodot/icons/crosshair.svg" id="16_7y851"]
+[ext_resource type="Script" path="res://addons/nodot/interaction/Health.gd" id="18_dqqsd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_w32od"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8dacb"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7k8ev"]
+material = SubResource("StandardMaterial3D_8dacb")
+size = Vector3(0.125, 0.085, 0.8)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_38h51"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hpv7t"]
+albedo_texture = ExtResource("8_yoicw")
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ne15u"]
+properties/0/path = NodePath("Magazine:capacity")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath("Magazine:rounds_left")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath(".:active")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nswtg"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = false
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = false
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath(".:display_name")
+properties/2/spawn = true
+properties/2/sync = false
+properties/2/watch = false
+properties/3/path = NodePath("Head:rotation")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_ccicf")
+head_position = Vector3(0, 0.75, 0)
+is_current_player = true
+
+[node name="Head" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.575853)
+target_position = Vector3(0, 0, -30)
+
+[node name="DisplayName" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16252, 0)
+pixel_size = 0.0015
+billboard = 1
+fixed_size = true
+text = "Display Name"
+font_size = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_w32od")
+
+[node name="VisibleGun" type="MeshInstance3D" parent="MeshInstance3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.500963, 0.107236, -0.633745)
+mesh = SubResource("BoxMesh_7k8ev")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_38h51")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("18_dqqsd")
+current_health = 100.0
+
+[node name="FirstPersonViewport" type="SubViewportContainer" parent="." node_paths=PackedStringArray("character")]
+offset_right = 1150.0
+offset_bottom = 645.0
+script = ExtResource("2_bgjik")
+character = NodePath("..")
+
+[node name="FirstPersonItem" type="Node3D" parent="FirstPersonViewport" node_paths=PackedStringArray("magazine_node", "hitscan_node", "bullethole_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.469202, -0.397237, -0.770814)
+script = ExtResource("4_17wvg")
+active = true
+magazine_node = NodePath("Magazine")
+hitscan_node = NodePath("HitScan3D")
+bullethole_node = NodePath("BulletHole")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FirstPersonViewport/FirstPersonItem"]
+mesh = SubResource("BoxMesh_7k8ev")
+
+[node name="FirstPersonIronSight" type="Node3D" parent="FirstPersonViewport/FirstPersonItem"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0652657, 0.502675)
+script = ExtResource("5_p0wp8")
+
+[node name="Magazine" type="Node" parent="FirstPersonViewport/FirstPersonItem"]
+script = ExtResource("5_a55jl")
+capacity = 30
+supply_count = 120
+supply_count_limit = 120
+fire_rate = 0.085
+rounds_left = 30
+
+[node name="HitScan3D" type="Node3D" parent="FirstPersonViewport/FirstPersonItem" node_paths=PackedStringArray("raycast")]
+script = ExtResource("6_n16ca")
+enabled = true
+raycast = NodePath("../../../Head/Camera3D/RayCast3D")
+damage = 10.0
+distance = 50.0
+
+[node name="BulletHole" type="Node3D" parent="FirstPersonViewport/FirstPersonItem"]
+script = ExtResource("7_mppwb")
+textures = Array[StandardMaterial3D]([SubResource("StandardMaterial3D_hpv7t")])
+
+[node name="DryfireSFX" type="AudioStreamPlayer3D" parent="FirstPersonViewport/FirstPersonItem" node_paths=PackedStringArray("trigger_node")]
+script = ExtResource("9_nvo8j")
+sfx = Array[AudioStream]([ExtResource("10_1kkvn")])
+trigger_node = NodePath("../Magazine")
+trigger_signal = "magazine_depleted"
+
+[node name="FireSFX" type="AudioStreamPlayer3D" parent="FirstPersonViewport/FirstPersonItem" node_paths=PackedStringArray("trigger_node")]
+script = ExtResource("9_nvo8j")
+sfx = Array[AudioStream]([ExtResource("11_kg82p")])
+trigger_node = NodePath("../Magazine")
+trigger_signal = "discharged"
+
+[node name="ReloadSFX" type="AudioStreamPlayer3D" parent="FirstPersonViewport/FirstPersonItem" node_paths=PackedStringArray("trigger_node")]
+script = ExtResource("9_nvo8j")
+sfx = Array[AudioStream]([ExtResource("12_dl40a")])
+trigger_node = NodePath("../Magazine")
+trigger_signal = "reloading"
+
+[node name="CrossHair" type="Node2D" parent="FirstPersonViewport/FirstPersonItem"]
+script = ExtResource("15_33qns")
+crosshair_sprite = ExtResource("16_7y851")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="FirstPersonViewport/FirstPersonItem"]
+replication_config = SubResource("SceneReplicationConfig_ne15u")
+
+[node name="CharacterMover3D" type="Node" parent="."]
+script = ExtResource("4_frkw4")
+
+[node name="CharacterJump3D" type="Node" parent="."]
+script = ExtResource("5_1qjba")
+
+[node name="CharacterFly3D" type="Node" parent="."]
+script = ExtResource("6_ux5dw")
+
+[node name="FirstPersonMouseInput" type="Node" parent="."]
+script = ExtResource("6_eioud")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_nswtg")

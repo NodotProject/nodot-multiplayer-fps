@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bms153xuqxxi7"]
+
+[ext_resource type="Script" path="res://entities/player/spawn.gd" id="1_80eeu"]
+
+[node name="spawn" type="Marker3D"]
+script = ExtResource("1_80eeu")

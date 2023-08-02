@@ -1,0 +1,69 @@
+[gd_scene load_steps=12 format=3 uid="uid://clkxlummcimu8"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_ccicf"]
+[ext_resource type="Script" path="res://addons/nodot/characters/FirstPerson/FirstPersonViewport.gd" id="2_bgjik"]
+[ext_resource type="Script" path="res://addons/nodot/interaction/Interaction3D.gd" id="3_ow5lb"]
+[ext_resource type="Script" path="res://addons/nodot/characters/Locomotion3D/CharacterMover3D.gd" id="4_frkw4"]
+[ext_resource type="Script" path="res://addons/nodot/characters/Locomotion3D/CharacterJump3D.gd" id="5_1qjba"]
+[ext_resource type="Script" path="res://addons/nodot/characters/FirstPerson/FirstPersonMouseInput.gd" id="6_eioud"]
+[ext_resource type="Script" path="res://addons/nodot/characters/Locomotion3D/CharacterFly3D.gd" id="6_ux5dw"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_w32od"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_38h51"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_doi7k"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nswtg"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_ccicf")
+head_position = Vector3(0, 1, 0)
+is_current_player = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_w32od")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_38h51")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.506006, -0.545557)
+mesh = SubResource("BoxMesh_doi7k")
+
+[node name="FirstPersonViewport" type="SubViewportContainer" parent="." node_paths=PackedStringArray("character")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_bgjik")
+character = NodePath("..")
+
+[node name="Interaction3D" type="RayCast3D" parent="FirstPersonViewport"]
+target_position = Vector3(0, 0, -1)
+script = ExtResource("3_ow5lb")
+
+[node name="CharacterMover3D" type="Node" parent="."]
+script = ExtResource("4_frkw4")
+
+[node name="CharacterJump3D" type="Node" parent="."]
+script = ExtResource("5_1qjba")
+
+[node name="CharacterFly3D" type="Node" parent="."]
+script = ExtResource("6_ux5dw")
+
+[node name="FirstPersonMouseInput" type="Node" parent="."]
+script = ExtResource("6_eioud")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_nswtg")
