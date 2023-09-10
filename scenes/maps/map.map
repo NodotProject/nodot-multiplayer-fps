@@ -122,23 +122,3 @@
 ( 384 320 16 ) ( 384 320 17 ) ( 384 321 16 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 1
-{
-"classname" "player_spawn"
-"origin" "-68 -60 20"
-}
-// entity 2
-{
-"classname" "player_spawn"
-"origin" "-68 388 20"
-}
-// entity 3
-{
-"classname" "player_spawn"
-"origin" "444 388 20"
-}
-// entity 4
-{
-"classname" "player_spawn"
-"origin" "444 -60 20"
-}
