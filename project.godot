@@ -29,10 +29,15 @@ NetworkManager="*res://addons/nodot/autoload/NetworkManager.gd"
 MultiplayerManager="*res://autoload/MultiplayerManager.gd"
 GlobalStorage="*res://addons/nodot/autoload/GlobalStorage.gd"
 DebugManager="*res://addons/nodot/autoload/DebugManager.gd"
+NetworkTime="*res://addons/netfox/network-time.gd"
+NetworkTimeSynchronizer="*res://addons/netfox/network-time-synchronizer.gd"
+NetworkRollback="*res://addons/netfox/rollback/network-rollback.gd"
+NetworkEvents="*res://addons/netfox/network-events.gd"
+NetworkPerformance="*res://addons/netfox/network-performance.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/nodot/plugin.cfg", "res://addons/tbloader/plugin.cfg")
+enabled=PackedStringArray("res://addons/netfox.internals/plugin.cfg", "res://addons/netfox/plugin.cfg", "res://addons/nodot/plugin.cfg", "res://addons/tbloader/plugin.cfg")
 
 [input]
 
