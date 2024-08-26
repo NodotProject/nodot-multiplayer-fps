@@ -1,6 +1,6 @@
 @icon("../../icons/keyboard.svg")
 ## Adds keyboard support to the first person character
-class_name ThirdPersonKeyboardInput extends Nodot
+class_name FirstPersonKeyboardInput extends Nodot
 
 ## Is input enabled
 @export var enabled := true
@@ -15,14 +15,12 @@ class_name ThirdPersonKeyboardInput extends Nodot
 ## The input action name for moving backwards
 @export var down_action: String = "down"
 
-@onready var character: ThirdPersonCharacter = get_parent()
-
-var camera_container: Node3D
+@onready var character: FirstPersonCharacter = get_parent()
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray = []
-	if !(get_parent() is ThirdPersonCharacter):
-		warnings.append("Parent should be a ThirdPersonCharacter")
+	if !(get_parent() is FirstPersonCharacter):
+		warnings.append("Parent should be a FirstPersonCharacter")
 	return warnings
 
 func _ready():
@@ -33,11 +31,9 @@ func _ready():
 	InputManager.register_action(right_action, KEY_D)
 	InputManager.register_action(up_action, KEY_W)
 	InputManager.register_action(down_action, KEY_S)
-	
-	camera_container = character.camera.get_parent()
 
 func _physics_process(delta: float) -> void:
-	if !character or not character.is_authority(): return
+	if not character.is_authority(): return
 	
 	if enabled and character.input_enabled:
 		character.direction = Input.get_vector(left_action, right_action, up_action, down_action)
