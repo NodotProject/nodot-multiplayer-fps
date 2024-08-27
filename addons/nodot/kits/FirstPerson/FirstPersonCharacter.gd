@@ -26,8 +26,6 @@ var peak_recent_velocity: Vector3 = Vector3.ZERO
 var peak_recent_velocity_timer: float = 0.0
 var character_colliders: UniqueSet = UniqueSet.new()
 var terminal_velocity := 190.0
-var direction := Vector2.ZERO
-var look_angle := Vector2.ZERO
 
 func _enter_tree() -> void:
 	if !sm:

@@ -10,6 +10,7 @@ class_name NodotCharacter3D extends CharacterBody3D
 signal current_camera_changed(old_camera: Camera3D, new_camera: Camera3D)
 
 var current_camera: Camera3D
+var input_states: Dictionary = {} 
 
 func _is_on_floor() -> Node:
 	var collision_info: KinematicCollision3D = move_and_collide(Vector3(0,-0.1,0),true)

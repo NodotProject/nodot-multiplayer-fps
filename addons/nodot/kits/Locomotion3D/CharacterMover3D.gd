@@ -78,7 +78,8 @@ func action(delta: float):
 		basis = character.current_camera.global_transform.basis
 	else:
 		basis = character.transform.basis
-	direction = (basis * Vector3(character.direction.x, 0, character.direction.y))
+	var character_direction: Vector2 = character.input_states["direction"]
+	direction = (basis * Vector3(character_direction.x, 0, character_direction.y))
 		
 	if character.input_enabled and direction != Vector3.ZERO:
 		if Input.is_action_pressed(sprint_action):

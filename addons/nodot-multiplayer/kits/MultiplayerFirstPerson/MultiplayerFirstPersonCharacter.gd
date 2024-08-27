@@ -3,6 +3,7 @@ class_name MultiplayerFirstPersonCharacter extends FirstPersonCharacter
 
 @export var character_mover: CharacterMover3D
 @export var character_look: CharacterLook3D
+@export var character_jump: CharacterJump3D
 @export var rollback_synchronizer: RollbackSynchronizer
 @export var input: PlayerInput
 
@@ -25,7 +26,9 @@ func _ready() -> void:
 		call("_after_ready")
 
 func _rollback_tick(delta, tick, is_fresh):
-	direction = input.direction
-	look_angle = input.look_angle
+	input_states["direction"] = input.direction
+	input_states["look_angle"] = input.look_angle
+	input_states["jump"] = input.jump_pressed
 	character_mover.action(delta)
 	character_look.action(delta)
+	character_jump.action()

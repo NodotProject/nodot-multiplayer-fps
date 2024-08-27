@@ -1,13 +1,11 @@
 extends MultiplayerFirstPersonCharacter
 
 @export var display_name: String = "": set = _set_display_name
+@export var player_model: MeshInstance3D
 
 func _after_ready():
 	var next_position = MultiplayerManager.spawn_points.get_next_item().global_position
 	global_position = next_position
-	
-	if is_authority_owner():
-		%VisibleGun.queue_free()
 		
 	display_name = str(name)
 

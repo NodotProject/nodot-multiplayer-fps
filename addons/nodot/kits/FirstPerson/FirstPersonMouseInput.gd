@@ -51,9 +51,8 @@ func _ready() -> void:
 		cursor_show_state = Input.MOUSE_MODE_HIDDEN
 
 func _input(event: InputEvent) -> void:
-	if not character.is_authority_owner(): return
+	if not is_multiplayer_authority(): return
 	if !enabled or !character.input_enabled: return
-	
 	if event is InputEventMouseMotion:
 		mouse_rotation.y = event.relative.x * InputManager.mouse_sensitivity
 		mouse_rotation.x = event.relative.y * InputManager.mouse_sensitivity
@@ -76,13 +75,12 @@ func _physics_process(delta: float) -> void:
 	action(delta)
 	
 func action(delta: float):
-	if is_editor or character and character.is_authority_owner() == false: return
 	if !enabled or is_editor or !character.input_enabled: return
 	
-	character.look_angle = look_angle(delta)
-			
+	character.input_states["look_angle"] = get_input(delta)
+
 # Get the look_angle
-func look_angle(delta: float) -> Vector2:
+func get_input(delta: float) -> Vector2:
 	var look_angle: Vector2 = Vector2(-mouse_rotation.x * delta, -mouse_rotation.y * delta)
 	var final_angle := Vector2(look_angle.y, look_angle.x)
 	mouse_rotation = Vector2.ZERO
