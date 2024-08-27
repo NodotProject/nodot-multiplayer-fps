@@ -118,10 +118,26 @@ func bump() -> void:
 ## Get the number of monitors available
 func get_screen_count() -> int:
 	return DisplayServer.get_screen_count()
+	
+## Get the screen size
+func get_screen_size() -> Vector2:
+	return DisplayServer.screen_get_size(screen)
+	
+## Get the screen position
+func get_screen_position() -> Vector2:
+	return DisplayServer.screen_get_position(screen)
 
 ## Set minimum window size
 func set_minimum_window_size(size: Vector2 = Vector2(1152, 648)):
 	DisplayServer.window_set_min_size(size)
+	
+## Set window size
+func set_window_size(size: Vector2):
+	DisplayServer.window_set_size(size)
+	
+## Set window position
+func set_window_position(position: Vector2):
+	DisplayServer.window_set_position(position)
 
 ## Register a subviewport or worldenvironment for processing
 func register(node: Node):
