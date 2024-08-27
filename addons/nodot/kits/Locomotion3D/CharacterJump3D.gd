@@ -32,13 +32,17 @@ func state_updated(old_state: int, new_state: int) -> void:
 
 func jump() -> void:
 	character.velocity.y = jump_velocity
+	
+func input(event: InputEvent):
+	if not is_authority_owner(): return
+	
+	if event.is_action_pressed(jump_action):
+		character.input_states["jump"] = true
 
 func physics(_delta) -> void:
 	action()
 
 func action():
-	if not is_authority_owner(): return
-	
 	if !character.was_on_floor:
 		return
 	

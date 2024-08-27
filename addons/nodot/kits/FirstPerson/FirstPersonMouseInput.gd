@@ -57,34 +57,42 @@ func _input(event: InputEvent) -> void:
 		mouse_rotation.y = event.relative.x * InputManager.mouse_sensitivity
 		mouse_rotation.x = event.relative.y * InputManager.mouse_sensitivity
 
-	if fps_item_container:
-		if event.is_action_pressed(item_next_action):
-			fps_item_container.next_item()
-		elif event.is_action_pressed(item_previous_action):
-			fps_item_container.previous_item()
-		elif event.is_action_pressed(action_action):
-			fps_item_container.action()
-		elif event.is_action_just_released(action_action):
-			fps_item_container.release_action();
-		elif event.is_action_just_pressed(zoom_action):
-			fps_item_container.zoom()
-		elif event.is_action_just_released(zoom_action):
-			fps_item_container.zoomout()
-
 func _physics_process(delta: float) -> void:
 	action(delta)
 	
 func action(delta: float):
+	if not is_multiplayer_authority(): return
 	if !enabled or is_editor or !character.input_enabled: return
 	
-	character.input_states["look_angle"] = get_input(delta)
+	var input: Dictionary = get_input(delta)
+	
+	character.input_states["mouse_action"] = input.mouse_action
+	character.input_states["look_angle"] = input.look_angle
 
 # Get the look_angle
-func get_input(delta: float) -> Vector2:
+func get_input(delta: float) -> Dictionary:
 	var look_angle: Vector2 = Vector2(-mouse_rotation.x * delta, -mouse_rotation.y * delta)
 	var final_angle := Vector2(look_angle.y, look_angle.x)
 	mouse_rotation = Vector2.ZERO
-	return final_angle
+	
+	var mouse_action: String = ""
+	if Input.is_action_pressed(item_next_action):
+		mouse_action = "next_item"
+	elif Input.is_action_pressed(item_previous_action):
+		mouse_action = "previous_item"
+	elif Input.is_action_pressed(action_action):
+		mouse_action = "action"
+	elif Input.is_action_just_released(action_action):
+		mouse_action = "release_action"
+	elif Input.is_action_pressed(zoom_action):
+		mouse_action = "zoom"
+	elif Input.is_action_just_released(zoom_action):
+		mouse_action = "zoomout"
+			
+	return {
+		"look_angle": final_angle,
+		"mouse_action": mouse_action
+	}
 
 ## Disable input and release mouse
 func disable() -> void:
