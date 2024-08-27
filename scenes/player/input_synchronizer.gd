@@ -10,10 +10,9 @@ var look_angle := Vector2.ZERO
 
 func action():
 	if is_multiplayer_authority():
+		prints(character.name, get_multiplayer_authority())
 		character.set_current_player()
 	
 func _gather():
-	kb.action()
-	mouse.action(0.166666)
-	direction = character.direction
-	look_angle = character.look_angle
+	direction = kb.direction()
+	look_angle = mouse.look_angle(1.0 / NetworkTime.tickrate)

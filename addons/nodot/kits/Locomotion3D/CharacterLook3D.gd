@@ -10,9 +10,11 @@ func ready():
 	if !enabled: return
 	
 	register_handled_states(handle_states)
-		
+
 func physics(delta: float) -> void:
-	if not is_authority(): return
+	action(delta)
+
+func action(delta: float) -> void:
 	if !character.input_enabled: return
 	
 		# Handle look left and right

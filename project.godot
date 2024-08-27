@@ -37,7 +37,7 @@ NetworkPerformance="*res://addons/netfox/network-performance.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/netfox.internals/plugin.cfg", "res://addons/netfox/plugin.cfg", "res://addons/nodot/plugin.cfg", "res://addons/tbloader/plugin.cfg")
+enabled=PackedStringArray("res://addons/netfox.internals/plugin.cfg", "res://addons/netfox/plugin.cfg", "res://addons/nodot/plugin.cfg")
 
 [input]
 

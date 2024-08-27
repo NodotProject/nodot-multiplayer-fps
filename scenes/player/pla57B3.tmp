@@ -1,0 +1,103 @@
+[gd_scene load_steps=15 format=3 uid="uid://clkxlummcimu8"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_ccicf"]
+[ext_resource type="Script" path="res://scenes/player/input_synchronizer.gd" id="2_ai5p8"]
+[ext_resource type="Script" path="res://addons/netfox/rollback/rollback-synchronizer.gd" id="3_1fm8y"]
+[ext_resource type="Script" path="res://addons/nodot-multiplayer/kits/MultiplayerFirstPerson/MultiplayerFirstPersonKeyboardInput.gd" id="5_g7n5f"]
+[ext_resource type="Script" path="res://addons/nodot-multiplayer/kits/MultiplayerFirstPerson/MultiplayerFirstPersonMouseInput.gd" id="6_ch5pm"]
+[ext_resource type="Script" path="res://addons/nodot-multiplayer/kits/MultiplayerLocomotion3D/MultiplayerCharacterMover3D.gd" id="7_q26lk"]
+[ext_resource type="Script" path="res://addons/nodot-multiplayer/kits/MultiplayerLocomotion3D/MultiplayerCharacterLook3D.gd" id="8_8j24c"]
+[ext_resource type="Script" path="res://addons/nodot-multiplayer/kits/MultiplayerLocomotion3D/MultiplayerCharacterJump3D.gd" id="9_ecw6w"]
+[ext_resource type="Script" path="res://addons/nodot/utility/StateMachine.gd" id="20_gff7c"]
+[ext_resource type="Script" path="res://addons/nodot/utility/StateConnector.gd" id="21_qgroj"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_w32od"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8dacb"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7k8ev"]
+material = SubResource("StandardMaterial3D_8dacb")
+size = Vector3(0.125, 0.085, 0.8)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_38h51"]
+
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("character_mover", "character_look", "rollback_synchronizer", "input", "sm", "camera")]
+script = ExtResource("1_ccicf")
+character_mover = NodePath("MultiplayerCharacterMover3D")
+character_look = NodePath("MultiplayerCharacterLook3D")
+rollback_synchronizer = NodePath("RollbackSynchronizer")
+input = NodePath("InputSynchronizer")
+sm = NodePath("StateMachine")
+camera = NodePath("Head/Camera3D")
+
+[node name="InputSynchronizer" type="Node" parent="." node_paths=PackedStringArray("kb", "mouse")]
+script = ExtResource("2_ai5p8")
+kb = NodePath("../MultiplayerFirstPersonKeyboardInput")
+mouse = NodePath("../MultiplayerFirstPersonMouseInput")
+
+[node name="RollbackSynchronizer" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("3_1fm8y")
+root = NodePath("..")
+state_properties = Array[String]([":global_transform", "Head:rotation"])
+input_properties = Array[String](["InputSynchronizer:direction", "InputSynchronizer:look_angle"])
+
+[node name="Head" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.491213, 0)
+current = true
+
+[node name="DisplayName" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16252, 0)
+pixel_size = 0.0015
+billboard = 1
+fixed_size = true
+text = "Display Name"
+font_size = 17
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_w32od")
+
+[node name="VisibleGun" type="MeshInstance3D" parent="MeshInstance3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.500963, 0.418634, -0.633745)
+mesh = SubResource("BoxMesh_7k8ev")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_38h51")
+
+[node name="MultiplayerFirstPersonKeyboardInput" type="Node" parent="."]
+script = ExtResource("5_g7n5f")
+
+[node name="MultiplayerFirstPersonMouseInput" type="Node" parent="."]
+script = ExtResource("6_ch5pm")
+
+[node name="MultiplayerCharacterMover3D" type="Node" parent="."]
+script = ExtResource("7_q26lk")
+gravity = null
+friction = null
+stepping_enabled = null
+step_height = null
+movement_speed = null
+sprint_speed_multiplier = null
+terminal_velocity = null
+handle_states = null
+strafing = null
+turn_rate = null
+sprint_action = null
+enabled = null
+ignore_handled_states = null
+
+[node name="MultiplayerCharacterLook3D" type="Node" parent="." node_paths=PackedStringArray("head")]
+script = ExtResource("8_8j24c")
+head = NodePath("../Head")
+
+[node name="MultiplayerCharacterJump3D" type="Node" parent="."]
+script = ExtResource("9_ecw6w")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("20_gff7c")
+
+[node name="StateConnector" type="Node" parent="StateMachine"]
+script = ExtResource("21_qgroj")
