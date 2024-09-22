@@ -1,4 +1,4 @@
-# Potion Seller
+# Nodot Multiplayer First Person Shooter
 
 ## Setup
 
