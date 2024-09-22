@@ -1,4 +1,4 @@
-extends FirstPersonCharacter
+extends MultiplayerFirstPersonCharacter
 
 @export var display_name: String = "": set = _set_display_name
 

@@ -1,0 +1,1 @@
+class_name MultiplayerCharacterZeroGravity3D extends CharacterZeroGravity3D

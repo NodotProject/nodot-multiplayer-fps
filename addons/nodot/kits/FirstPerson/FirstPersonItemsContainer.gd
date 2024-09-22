@@ -25,12 +25,14 @@ func _ready() -> void:
 				)
 				
 	GlobalSignal.add_listener("carry_ended", self, "on_carry_ended")
-	
-func _input(event: InputEvent) -> void:
-	if not character.is_authority(): return
-	
-	if InputMap.has_action(reload_action) and event.is_action_pressed(reload_action):
+		
+func _physics_process(delta: float) -> void:
+	if get_input():
 		reload()
+	action()
+		
+func get_input():
+	return InputMap.has_action(reload_action) and Input.is_action_pressed(reload_action)
 
 ## Select the next item
 func next_item() -> void:
@@ -133,8 +135,26 @@ func lock_item(item_index: int):
 	if items.size() <= item_index: return
 	items[item_index].unlocked = false
 
+func action():
+	var mouse_action = character.input_states.get("mouse_action")
+	match mouse_action:
+		"next_item":
+			next_item()
+		"previous_item":
+			previous_item()
+		"action":
+			discharge()
+		"release_action":
+			release_action();
+		"zoom":
+			zoom()
+		"zoomout":
+			zoomout()
+			
+	if character.input_states["reload"]:
+		reload()
 
-func action() -> void:
+func discharge() -> void:
 	if !enabled: return
 	if carry_ended: return
 	
