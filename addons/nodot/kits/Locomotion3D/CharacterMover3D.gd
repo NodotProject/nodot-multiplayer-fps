@@ -119,7 +119,6 @@ func set_rigid_interaction():
 			c.get_collider().apply_central_impulse(-c.get_normal() * 0.25 * c.get_collider().mass)
 
 
-
 func move_air(delta: float) -> void:
 	character.velocity.y = min(terminal_velocity, character.velocity.y - gravity * delta)
 	
