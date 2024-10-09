@@ -4,3 +4,4 @@
 addons/netfox
 addons/netfox.extras
 addons/netfox.internals
+*.tmp

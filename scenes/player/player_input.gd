@@ -3,9 +3,8 @@ class_name PlayerInput extends BaseNetInput
 @export var player_models: Array[Node]
 @export var kb: MultiplayerFirstPersonKeyboardInput
 @export var mouse: MultiplayerFirstPersonMouseInput
-@export var jump: MultiplayerCharacterJump3D
 @export var interact3d: MultiplayerInteraction3D
-@export var multiplayer_mover: MultiplayerCharacterMover3D
+@export var multiplayer_mover: Node
 @export var first_person_items: MultiplayerFirstPersonItemsContainer
 
 @onready var character: MultiplayerFirstPersonCharacter = get_parent()
@@ -28,10 +27,12 @@ func action():
 	
 func _gather():
 	var mouse_input: Dictionary = mouse.get_input(NetworkTime.ticktime)
+	var movement = multiplayer_mover.get_input()
 	look_angle = mouse_input.look_angle
 	mouse_action = mouse_input.mouse_action
+	jump_pressed = movement["jump"]
+	sprint = movement["sprint"]
 	direction = kb.get_input()
-	sprint = multiplayer_mover.get_input()
-	jump_pressed = jump.get_input()
 	interact = interact3d.get_input()
 	reload_pressed = first_person_items.get_input()
+	

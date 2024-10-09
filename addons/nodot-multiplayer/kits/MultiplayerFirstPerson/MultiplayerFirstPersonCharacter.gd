@@ -1,9 +1,7 @@
 ## A CharacterBody3D for multiplayer first person games
 class_name MultiplayerFirstPersonCharacter extends FirstPersonCharacter
 
-@export var character_mover: MultiplayerCharacterMover3D
-@export var character_look: MultiplayerCharacterLook3D
-@export var character_jump: MultiplayerCharacterJump3D
+@export var character_mover: Node
 @export var first_person_items: MultiplayerFirstPersonItemsContainer
 @export var multiplayer_interact3d: MultiplayerInteraction3D
 @export var local_interact3d: Interaction3D
@@ -40,9 +38,7 @@ func _rollback_tick(delta, tick, is_fresh):
 	input_states["interact"] = input.interact
 	input_states["reload"] = input.reload_pressed
 	
-	character_jump.action()
 	character_mover.action(delta)
-	character_look.action(delta)
 	first_person_items.action()
 	if input.reload_pressed:
 		first_person_items.reload()
