@@ -1,0 +1,404 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://b74rbr16tc16v"
+path="res://.godot/imported/reflection.glb-7567b95765798ba2c1161e648adcc97b.scn"
+
+[deps]
+
+source_file="res://reflection/models/reflection.glb"
+dest_files=["res://.godot/imported/reflection.glb-7567b95765798ba2c1161e648adcc97b.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.1
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=15
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"materials": {
+"slot1": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot1.tres"
+},
+"slot100": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot100.tres"
+},
+"slot101": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot101.tres"
+},
+"slot103": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot103.tres"
+},
+"slot104": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot104.tres"
+},
+"slot105": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot105.tres"
+},
+"slot106": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot106.tres"
+},
+"slot107": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot107.tres"
+},
+"slot108": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot108.tres"
+},
+"slot109": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot109.tres"
+},
+"slot11": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot11.tres"
+},
+"slot110": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot110.tres"
+},
+"slot111": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot111.tres"
+},
+"slot112": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot112.tres"
+},
+"slot113": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot113.tres"
+},
+"slot114": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot114.tres"
+},
+"slot115": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot115.tres"
+},
+"slot116": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot116.tres"
+},
+"slot117": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot117.tres"
+},
+"slot118": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot118.tres"
+},
+"slot119": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot119.tres"
+},
+"slot120": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot120.tres"
+},
+"slot13": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot13.tres"
+},
+"slot14": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot14.tres"
+},
+"slot16": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot16.tres"
+},
+"slot17": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot17.tres"
+},
+"slot18": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot18.tres"
+},
+"slot19": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot19.tres"
+},
+"slot20": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot20.tres"
+},
+"slot22": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot22.tres"
+},
+"slot23": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot23.tres"
+},
+"slot24": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot24.tres"
+},
+"slot25": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot25.tres"
+},
+"slot28": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot28.tres"
+},
+"slot29": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot29.tres"
+},
+"slot3": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot3.tres"
+},
+"slot30": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot30.tres"
+},
+"slot31": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot31.tres"
+},
+"slot33": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot33.tres"
+},
+"slot35": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot35.tres"
+},
+"slot36": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot36.tres"
+},
+"slot37": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot37.tres"
+},
+"slot38": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot38.tres"
+},
+"slot4": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot4.tres"
+},
+"slot40": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot40.tres"
+},
+"slot41": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot41.tres"
+},
+"slot42": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot42.tres"
+},
+"slot43": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot43.tres"
+},
+"slot44": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot44.tres"
+},
+"slot45": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot45.tres"
+},
+"slot46": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot46.tres"
+},
+"slot47": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot47.tres"
+},
+"slot5": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot5.tres"
+},
+"slot52": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot52.tres"
+},
+"slot53": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot53.tres"
+},
+"slot54": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot54.tres"
+},
+"slot55": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot55.tres"
+},
+"slot57": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot57.tres"
+},
+"slot58": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot58.tres"
+},
+"slot59": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot59.tres"
+},
+"slot6": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot6.tres"
+},
+"slot60": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot60.tres"
+},
+"slot61": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot61.tres"
+},
+"slot63": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot63.tres"
+},
+"slot67": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot67.tres"
+},
+"slot7": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot7.tres"
+},
+"slot70": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot70.tres"
+},
+"slot71": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot71.tres"
+},
+"slot72": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot72.tres"
+},
+"slot73": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot73.tres"
+},
+"slot74": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot74.tres"
+},
+"slot75": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot75.tres"
+},
+"slot77": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot77.tres"
+},
+"slot78": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot78.tres"
+},
+"slot79": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot79.tres"
+},
+"slot8": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot8.tres"
+},
+"slot80": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot80.tres"
+},
+"slot83": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot83.tres"
+},
+"slot84": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot84.tres"
+},
+"slot85": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot85.tres"
+},
+"slot86": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot86.tres"
+},
+"slot87": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot87.tres"
+},
+"slot88": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot88.tres"
+},
+"slot89": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot89.tres"
+},
+"slot90": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot90.tres"
+},
+"slot91": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot91.tres"
+},
+"slot93": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot93.tres"
+},
+"slot94": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot94.tres"
+},
+"slot98": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot98.tres"
+},
+"slot99": {
+"use_external/enabled": true,
+"use_external/path": "res://reflection/models/slot99.tres"
+}
+},
+"nodes": {
+"PATH:reflection2": {
+"generate/physics": true
+}
+}
+}
+gltf/naming_version=0
+gltf/embedded_image_handling=1

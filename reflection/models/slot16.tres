@@ -1,0 +1,5 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c4jtu2gi24d8j"]
+
+[resource]
+resource_name = "slot16"
+texture_filter = 5
