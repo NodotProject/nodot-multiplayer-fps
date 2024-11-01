@@ -24,10 +24,9 @@ func action(delta: float):
 		was_on_floor = character._is_on_floor() != null
 		
 	if was_on_floor:
+		character.velocity *= NetworkTime.physics_factor
 		move_ground(delta)
 		character.velocity.y = lerp(character.velocity.y, 0.0, delta * 2.0)
-		character.velocity *= NetworkTime.physics_factor
-		stair_step()
 		character.velocity /= NetworkTime.physics_factor
 	else:
 		move_air(delta)
@@ -36,3 +35,10 @@ func action(delta: float):
 		character.velocity /= NetworkTime.physics_factor
 	
 	set_rigid_interaction()
+
+func get_input():
+	return {
+		"sprint": Input.is_action_pressed(sprint_action),
+		"jump": Input.is_action_pressed("jump_action")
+	}
+	

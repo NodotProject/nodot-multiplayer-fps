@@ -13,7 +13,3 @@ func get_input():
 	if just_pressed:
 		just_pressed = false
 	return was_pressed
-
-@rpc
-func rpc_action():
-	action()

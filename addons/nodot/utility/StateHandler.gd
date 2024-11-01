@@ -35,7 +35,7 @@ func _process(delta):
 		
 	process(delta)
 	
-func _input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:		
 	input(event)
 	
 func _on_enabled_changed(new_value: bool):

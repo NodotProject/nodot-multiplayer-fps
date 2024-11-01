@@ -28,10 +28,11 @@ func action():
 	
 func _gather():
 	var mouse_input: Dictionary = mouse.get_input(NetworkTime.ticktime)
+	var movement = multiplayer_mover.get_input()
 	look_angle = mouse_input.look_angle
 	mouse_action = mouse_input.mouse_action
+	sprint = movement.sprint
+	jump_pressed = movement.jump
 	direction = kb.get_input()
-	sprint = multiplayer_mover.get_input()
-	jump_pressed = jump.get_input()
 	interact = interact3d.get_input()
 	reload_pressed = first_person_items.get_input()

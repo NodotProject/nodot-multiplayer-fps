@@ -40,10 +40,11 @@ func _rollback_tick(delta, tick, is_fresh):
 	input_states["interact"] = input.interact
 	input_states["reload"] = input.reload_pressed
 	
-	character_jump.action()
 	character_mover.action(delta)
 	character_look.action(delta)
 	first_person_items.action()
+	if input.jump_pressed:
+		character_jump.jump()
 	if input.reload_pressed:
 		first_person_items.reload()
 	if input.interact:
