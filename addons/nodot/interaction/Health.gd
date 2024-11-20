@@ -5,6 +5,8 @@ class_name Health extends Nodot
 @export var max_health: float = 100.0
 ## The current health
 @export var current_health: float = max_health
+## Only use hitboxes if one is present
+@export var hitbox_only: bool = true
 
 ## current_health has reached zero
 signal health_depleted
@@ -24,7 +26,7 @@ func add_health(modifier: float) -> void:
 	var new_health: float = current_health + modifier
 	if new_health <= 0:
 		current_health = 0
-		emit_signal("health_depleted")
+		health_depleted.emit()
 	else:
 		if new_health > max_health:
 			current_health = max_health
@@ -32,10 +34,10 @@ func add_health(modifier: float) -> void:
 			current_health = new_health
 
 		if modifier < 0:
-			emit_signal("health_lost", old_health, new_health)
+			health_lost.emit(old_health, new_health)
 		else:
-			emit_signal("health_gained", old_health, new_health)
-	emit_signal("health_changed", old_health, new_health)
+			health_gained.emit(old_health, new_health)
+	health_changed.emit(old_health, new_health)
 
 
 ## Sets the current_health to a specific value

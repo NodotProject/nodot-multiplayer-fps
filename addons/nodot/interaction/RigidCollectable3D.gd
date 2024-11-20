@@ -36,12 +36,13 @@ func _enter_tree():
 	CollectableManager.add(self)
 
 func interact(player_node: CharacterBody3D = PlayerManager.node) -> void:
-	if !enabled or disable_player_collect or !player_node.has_method("collect") or !player_node.collect(self):
+	var inventory: CollectableInventory = Nodot.get_first_child_of_type(player_node, CollectableInventory)
+	if !inventory or !enabled or disable_player_collect or !inventory.add(display_name, quantity):
 		return
 	
 	enabled = false
 	visible = false
-	emit_signal("collected")
+	collected.emit()
 	
 	if free_delay > 0.0:
 		await get_tree().create_timer(free_delay, false).timeout
