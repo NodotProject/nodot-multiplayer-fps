@@ -5,7 +5,7 @@ class_name PlayerInput extends BaseNetInput
 @export var mouse: MultiplayerFirstPersonMouseInput
 @export var jump: MultiplayerCharacterJump3D
 @export var interact3d: MultiplayerInteraction3D
-@export var multiplayer_mover: MultiplayerCharacterMover3D
+@export var multiplayer_mover: MultiplayerCharacterMove3D
 @export var first_person_items: MultiplayerFirstPersonItemsContainer
 
 @onready var character: MultiplayerFirstPersonCharacter = get_parent()
